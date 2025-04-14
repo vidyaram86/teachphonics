@@ -1,0 +1,253 @@
+ body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .top-sections {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+      .left,
+      .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .header {
+        background-color: #b0c4de;
+        #padding: 10px;
+        padding: 5px;
+        text-align: center;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      .header_bottom {
+        background-color: #b0c4de;
+        #padding: 10px;
+        padding: 5px;
+        text-align: left;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      .content {
+        flex: 1;
+        overflow-y: auto; /* Enables independent scrolling */
+        #padding: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color: #f0f8ff;
+        flex-direction: column; /* Arranges items vertically */
+        ##display: flex; /* Enables flexbox layout */
+        gap: 10px; /* Adds spacing between tiles */
+        align-items: left; /* Centers tiles horizontally (optional) */
+      }
+
+      .right .content {
+        background-color: #faebd7;
+      }
+      .bottom {
+        background-color: #d3d3d3;
+        #padding: 20px;
+        padding: 5px;
+        display: flex;
+        #gap: 10px;
+        gap: 5px;
+        justify-content: left;
+        align-items: left;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        #height: 150px; /* Fixed height */
+        height: 75px; /* Fixed height */
+        overflow-y: auto; /* Enables independent scrolling */
+        flex-wrap: wrap;
+      }
+      .drop-box {
+        #width: 80px;
+        #height: 80px;
+        width: 60px;
+        height: 60px;
+        background-color: #ffffff;
+        border: 2px dashed #aaa;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .drop-box img {
+        max-width: 100%;
+        max-height: 100%;
+        cursor: pointer;
+      }
+      .drop-box .remove-box {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        background-color: black;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .drag-item {
+        width: 100px;
+        height: 100px;
+        background-color: #e6f7ff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: grab;
+      }
+      .add-box {
+        width: 40px;
+        height: 40px;
+        background-color: #add8e6;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+      }
+	  
+	  iframe{
+		    flex:1;
+			width: 100%;
+			height: 100%;
+			border: none;
+	   }
+	   .old_sound-group {
+      		border: 1px solid #ddd;
+      		border-radius: 8px;
+      		##padding: 10px;
+      		padding: 10px;
+      		background: #ffffff;
+      		##width: 200px;
+      		width: 200px;
+      		##height:auto;
+      		box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      		##added by vidya for vertcal arrangement
+      		flex:1;
+      		flex-direction: column; /* Arranges items vertically */
+      		display: flex; /* Enables flexbox layout */
+      		gap: 10px; /* Adds spacing between tiles */
+      		align-items: center; /* Centers tiles horizontally (optional) */
+      	}
+      	.sound-group {
+      		border: 5px solid #ddd;
+      		border-radius: 1px;
+      		##padding: 10px;
+      		padding: 3px;
+      		background: #ffffff;
+      		##width: 200px;
+      		width: auto;
+      		##height:auto;
+      		##box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      		##added by vidya for vertcal arrangement
+      		flex:1;
+      		flex-direction: column; /* Arranges items vertically */
+      		align-items: flex-start;
+      		display: flex; /* Enables flexbox layout */
+      		gap: 5px; /* Adds spacing between tiles */
+      		align-items: left; /* Centers tiles horizontally (optional) */
+      	}
+
+      	.sound-group h3 {
+      		margin: 0 0 10px;
+      	}
+
+      	.old_tiles {
+      		flex:1;
+      		display: flex;
+      		flex-wrap: wrap;
+      		gap: 10px;
+      		##added by vidya for vertcal arrangement
+      		flex:1;
+      		width:auto;
+      		flex-direction: row; /* Arranges items vertically */
+      		display: flex; /* Enables flexbox layout */
+      		gap: 10px; /* Adds spacing between tiles */
+      		align-items: center; /* Centers tiles horizontally (optional) */
+
+      	}
+
+      	.tiles {
+      		flex:1;
+      		display: flex;
+      		flex-wrap: wrap;
+      		gap: 10px;
+      	}
+
+      	.tile {
+      		padding: 10px 15px;
+      		border: 1px solid #ccc;
+      		border-radius: 5px;
+      		background-color: #e6f7ff;
+      		cursor: grab;
+      		user-select: none;
+      	}
+
+      	.tile:active {
+      		cursor: grabbing;
+      	}
+
+      	.image-container-add {
+      		#display: flex;
+      		display: block;
+      		#justify-content: center;
+      		justify-content: left;
+      		#gap: 10px;
+      		gap: 2px;
+      		##margin: 20px;
+      		margin: 2px;
+      	}
+
+      	.image-container {
+      		#display: flex;
+      		display: block;
+      		#justify-content: center;
+      		justify-content: left;
+      		#gap: 10px;
+      		gap: 2px;
+      		##margin: 20px;
+      		margin: 2px;
+      	}
+
+      	.image-container-add img {
+      	   # width: 100px;
+      	   # height: 100px;
+      		height: 70px;
+      		width: 70px;
+      		cursor: grab;
+      	}
+      	.image-container img {
+      	   # width: 100px;
+      	   # height: 100px;
+      		height: 70px;
+      		width: 70px;
+      		cursor: grab;
+      	}
