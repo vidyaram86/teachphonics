@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jolly_Image_Clues</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .top-sections {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+      .left,
+      .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .header {
+        background-color: #b0c4de;
+        #padding: 10px;
+        padding: 5px;
+        text-align: center;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      .header_bottom {
+        background-color: #b0c4de;
+        #padding: 10px;
+        padding: 5px;
+        text-align: left;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      .content {
+        flex: 1;
+        overflow-y: auto; /* Enables independent scrolling */
+        #padding: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color: #f0f8ff;
+        flex-direction: column; /* Arranges items vertically */
+        ##display: flex; /* Enables flexbox layout */
+        gap: 10px; /* Adds spacing between tiles */
+        align-items: left; /* Centers tiles horizontally (optional) */
+      }
+
+      .right .content {
+        background-color: #faebd7;
+      }
+      .bottom {
+        background-color: #d3d3d3;
+        #padding: 20px;
+        padding: 5px;
+        display: flex;
+        #gap: 10px;
+        gap: 5px;
+        justify-content: left;
+        align-items: left;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        #height: 150px; /* Fixed height */
+        height: 75px; /* Fixed height */
+        overflow-y: auto; /* Enables independent scrolling */
+        flex-wrap: wrap;
+      }
+      .drop-box {
+        #width: 80px;
+        #height: 80px;
+        width: 60px;
+        height: 60px;
+        background-color: #ffffff;
+        border: 2px dashed #aaa;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .drop-box img {
+        max-width: 100%;
+        max-height: 100%;
+        cursor: pointer;
+      }
+      .drop-box .remove-box {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 20px;
+        height: 20px;
+        background-color: black;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .drag-item {
+        width: 100px;
+        height: 100px;
+        background-color: #e6f7ff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: grab;
+      }
+      .add-box {
+        width: 40px;
+        height: 40px;
+        background-color: #add8e6;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffffff;
+      }
+      iframe {
+        width: 400px; /* Full width of the iframe content */
+        height: 200px; /* Full height of the iframe content */
+        transform: scale(0.5); /* Optional zoom */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-sections">
+        <div class="left">
+          <div class="header">Letters</div>
+          <div class="content">
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container-add" id="pic-1">
+                <img
+                  src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/1_s_snake.png?v=1744560959046"
+                  alt="1_s_snake"
+                  draggable="true"
+                />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/2_a_ants.png?v=1744561001918" alt="2_a_ants" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/3_t_tennis.png?v=1744559764709" alt="3_t_tennis" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/4_i_ink.png?v=1744560992296" alt="4_i_inky" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/5_p_puff.png?v=1744561009285" alt="5_p_pink" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/6_n_net.png?v=1744561014562" alt="6_n_nplane" draggable="true" />
+              </div>
+            </div>
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container-add" id="pic-2">
+                <img
+                  src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/7_c_castanets.png?v=1744561022892"
+                  alt="7_k_castennets"
+                  draggable="true"
+                />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/8_e_egg.png?v=1744561030577" alt="8_e_eggs" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/9_h_hop.png?v=1744561038315" alt="9_h_hops" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/10_r_rag.png?v=1744561045800" alt="10_r_rip" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/11_m_meal.png?v=1744561056180" alt="11_m_meals" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/12_d_drum.png?v=1744561060388" alt="12_d_drum" draggable="true" />
+              </div>
+            </div>
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container-add" id="pic-3">
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/13_g_gurgle.png?v=1744561068231" alt="13_g_gurgle" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/14_o_on_off.png?v=1744561078649" alt="14_o_onoff" draggable="true" />
+                <img
+                  src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/15_u_umbrella.png?v=1744560377192"
+                  alt="15_u_umbrella"
+                  draggable="true"
+                />
+                <img
+                  src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/16_l_lollipop.png?v=1744561085798"
+                  alt="16_l_lollilop"
+                  draggable="true"
+                />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/17_f_fish.png?v=1744561094536" alt="17_f_fish" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/18_b_bat.png?v=1744561100060" alt="18_b_bat" draggable="true" />
+              </div>
+            </div>
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container-add" id="pic-4">
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/19_ai_pain.png?v=1744561107030" alt="19_ai_pain" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/20_j_jam.png?v=1744561115542" alt="20_j_jelly" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/21_oa_goat.png?v=1744561122622" alt="21_oa_goat" draggable="true" />
+                <img
+                  src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/22_ie_ie_ie.png?v=1744561131963"
+                  alt="22_ie_iecaptian"
+                  draggable="true"
+                />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/23_ee_or_eey_ore.png?v=1744561138177" alt="23_ee" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/23_ee_or_eey_ore.png?v=1744561138177" alt="24_or" draggable="true" />
+              </div>
+            </div>
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container-add" id="pic-5">
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/24_z_buzz.png?v=1744561157769" alt="25_z_buzz" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/25_w_wind.png?v=1744561163720" alt="26_w_wind" draggable="true" />
+                <img
+                  src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/26_ng_strong.png?v=1744561170812"
+                  alt="27_ng_strong"
+                  draggable="true"
+                />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/27_v_van.png?v=1744561178934" alt="28_v_van" draggable="true" />
+                <img
+                  src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/28_oo_cook.png?v=1744561189140"
+                  alt="29_oo_cuckoo"
+                  draggable="true"
+                />
+              </div>
+            </div>
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container-add" id="pic-6">
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/29_y_yogurt.png?v=1744559774931" alt="30_y_yogurt" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/30_x_x_ray.png?v=1744561199318" alt="31_x_xray" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/31_ch_choo.png?v=1744561206598" alt="32_ch_chain" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/32_sh_hush.png?v=1744561214561" alt="33_sh_shh" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/33_th_this_thumb.png?v=1744561222630" alt="34_th_this" draggable="true" />
+              </div>
+            </div>
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container-add" id="pic-7">
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/35_ou_ouch.png?v=1744561228582" alt="35_qu_quack" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/34_qu_quack.png?v=1744561234258" alt="36_ou_ou" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/36_oi_oil.png?v=1744561242441" alt="37_oi_oil" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/37_ue_cue.png?v=1744561249560" alt="38_ue_cue" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/38_er_mixer.png?v=1744561256466" alt="39_er_mixer" draggable="true" />
+                <img src="https://cdn.glitch.global/4adfb181-a460-4bc2-8b7e-12b2c345e72f/39_ar_arm.png?v=1744561270371" alt="40_ar_car" draggable="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="header">Images / Actions Clues</div>
+          <div class="content">
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container" id="group-1">
+                <img
+                  src="../canva_letters/canva_2_s.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_a.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_t.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_p.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_i.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_n.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+              </div>
+            </div>
+
+            <div class="sound-group">
+              <div class="image-container" id="group-2">
+                <img
+                  src="../canva_letters/canva_2_c.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_k.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ck.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_e.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_h.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_r.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_m.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_d.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+              </div>
+            </div>
+
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container" id="group-3">
+                <img
+                  src="../canva_letters/canva_2_g.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_o.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_u.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_l.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_f.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_b.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+              </div>
+            </div>
+
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container" id="group-4">
+                <img
+                  src="../canva_letters/canva_2_ai.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_j.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_oa.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ie.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ee.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_or.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+              </div>
+            </div>
+
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container" id="group-5">
+                <img
+                  src="../canva_letters/canva_2_z.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_w.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ng.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_v.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_oo.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+              </div>
+            </div>
+
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container" id="group-6">
+                <img
+                  src="../canva_letters/canva_2_y.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_x.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ch.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_sh.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_th.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+              </div>
+            </div>
+
+            <!-- Sound Group -->
+            <div class="sound-group">
+              <div class="image-container" id="group-7">
+                <img
+                  src="../canva_letters/canva_2_qu.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ou.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_oi.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ue.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_er.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+                <img
+                  src="../canva_letters/canva_2_ar.png"
+                  alt="Placeholder Image"
+                  draggable="true"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom" id="bottomSection">
+        <div class="header_bottom">
+          Teacher can drop the clues
+        </div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="add-box" id="addBox">+</div>
+      </div>
+      <div
+        class="bottom"
+        style="background-color: #ffff"
+        id="bottomSoundSection"
+      >
+        <div class="header_bottom">
+          Student can drop the letters
+        </div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="drop-box"></div>
+        <div class="add-box" id="addBox_Sound">+</div>
+      </div>
+    </div>
+    <script>
+      const dragItems = document.querySelectorAll(".drag-item");
+      const bottomSection = document.getElementById("bottomSection");
+      const bottomSoundSection = document.getElementById("bottomSoundSection");
+
+      const addBoxButton = document.getElementById("addBox");
+      const addSoundBoxButton = document.getElementById("addBox_Sound");
+
+      dragItems.forEach((item) => {
+        item.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData(
+            "text/plain",
+            e.target.getAttribute("data-image")
+          );
+        });
+      });
+
+      function enableDrop(box) {
+        box.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          box.style.backgroundColor = "#f0f8ff";
+        });
+
+        box.addEventListener("dragleave", () => {
+          box.style.backgroundColor = "#ffffff";
+        });
+
+        box.addEventListener("drop", (e) => {
+          e.preventDefault();
+          const imageUrl = e.dataTransfer.getData("text/plain");
+          const img = document.createElement("img");
+          img.src = imageUrl;
+          img.addEventListener("click", () => {
+            img.remove();
+          });
+          box.innerHTML = "";
+          box.appendChild(img);
+          box.style.backgroundColor = "#ffffff";
+        });
+      }
+
+      addBoxButton.addEventListener("click", () => {
+        const newDropBox = document.createElement("div");
+        newDropBox.classList.add("drop-box");
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "x";
+        removeButton.classList.add("remove-box");
+        removeButton.addEventListener("click", () => {
+          newDropBox.remove();
+        });
+        newDropBox.appendChild(removeButton);
+        enableDrop(newDropBox);
+        bottomSection.insertBefore(newDropBox, addBoxButton);
+      });
+      addSoundBoxButton.addEventListener("click", () => {
+        const newDropBox = document.createElement("div");
+        newDropBox.classList.add("drop-box");
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "x";
+        removeButton.classList.add("remove-box");
+        removeButton.addEventListener("click", () => {
+          newDropBox.remove();
+        });
+        newDropBox.appendChild(removeButton);
+        enableDrop(newDropBox);
+        bottomSoundSection.insertBefore(newDropBox, addSoundBoxButton);
+      });
+
+      document.querySelectorAll(".drop-box").forEach(enableDrop);
+    </script>
+    <!-- style for tiles and grouping the tiles -->
+    <style>
+      .old_sound-group {
+      		border: 1px solid #ddd;
+      		border-radius: 8px;
+      		##padding: 10px;
+      		padding: 10px;
+      		background: #ffffff;
+      		##width: 200px;
+      		width: 200px;
+      		##height:auto;
+      		box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      		##added by vidya for vertcal arrangement
+      		flex:1;
+      		flex-direction: column; /* Arranges items vertically */
+      		display: flex; /* Enables flexbox layout */
+      		gap: 10px; /* Adds spacing between tiles */
+      		align-items: center; /* Centers tiles horizontally (optional) */
+      	}
+      	.sound-group {
+      		border: 5px solid #ddd;
+      		border-radius: 1px;
+      		##padding: 10px;
+      		padding: 3px;
+      		background: #ffffff;
+      		##width: 200px;
+      		width: auto;
+      		##height:auto;
+      		##box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      		##added by vidya for vertcal arrangement
+      		flex:1;
+      		flex-direction: column; /* Arranges items vertically */
+      		align-items: flex-start;
+      		display: flex; /* Enables flexbox layout */
+      		gap: 5px; /* Adds spacing between tiles */
+      		align-items: left; /* Centers tiles horizontally (optional) */
+      	}
+
+      	.sound-group h3 {
+      		margin: 0 0 10px;
+      	}
+
+      	.old_tiles {
+      		flex:1;
+      		display: flex;
+      		flex-wrap: wrap;
+      		gap: 10px;
+      		##added by vidya for vertcal arrangement
+      		flex:1;
+      		width:auto;
+      		flex-direction: row; /* Arranges items vertically */
+      		display: flex; /* Enables flexbox layout */
+      		gap: 10px; /* Adds spacing between tiles */
+      		align-items: center; /* Centers tiles horizontally (optional) */
+
+      	}
+
+      	.tiles {
+      		flex:1;
+      		display: flex;
+      		flex-wrap: wrap;
+      		gap: 10px;
+      	}
+
+      	.tile {
+      		padding: 10px 15px;
+      		border: 1px solid #ccc;
+      		border-radius: 5px;
+      		background-color: #e6f7ff;
+      		cursor: grab;
+      		user-select: none;
+      	}
+
+      	.tile:active {
+      		cursor: grabbing;
+      	}
+
+      	.image-container-add {
+      		#display: flex;
+      		display: block;
+      		#justify-content: center;
+      		justify-content: left;
+      		#gap: 10px;
+      		gap: 2px;
+      		##margin: 20px;
+      		margin: 2px;
+      	}
+
+      	.image-container {
+      		#display: flex;
+      		display: block;
+      		#justify-content: center;
+      		justify-content: left;
+      		#gap: 10px;
+      		gap: 2px;
+      		##margin: 20px;
+      		margin: 2px;
+      	}
+
+      	.image-container-add img {
+      	   # width: 100px;
+      	   # height: 100px;
+      		height: 70px;
+      		width: 70px;
+      		cursor: grab;
+      	}
+      	.image-container img {
+      	   # width: 100px;
+      	   # height: 100px;
+      		height: 40px;
+      		width: 40px;
+      		cursor: grab;
+      	}
+    </style>
+  </body>
+</html>
